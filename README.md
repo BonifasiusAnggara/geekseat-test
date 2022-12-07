@@ -5,7 +5,8 @@ A Story of The Witch
 
 The following guides illustrate how to use some features concretely:
 
-* [To use the endpoint please make a post request to](http://localhost:8080/witch/death-average)
+* [To use the endpoint please make a post request to]
+  http://localhost:8080/witch/death-average
 * with body:
   {
     "person1": {
@@ -17,5 +18,6 @@ The following guides illustrate how to use some features concretely:
       "yearOfDeath": 17
     }
   }
-* [Or you can just run the test](com.geekseat.test.GeekseatTestApplicationTest)
+* [Or you can just run the test]
+  com.geekseat.test.GeekseatTestApplicationTest
 
