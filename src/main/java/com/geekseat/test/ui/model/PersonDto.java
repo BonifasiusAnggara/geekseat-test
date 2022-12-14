@@ -8,6 +8,7 @@ import javax.validation.constraints.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class PersonDto {
     @NotNull(message = "Age of Death is Required")
     private Integer ageOfDeath;
@@ -20,10 +21,22 @@ public class PersonDto {
         return "PersonDto{" +
                 "ageOfDeath=" + ageOfDeath +
                 ", yearOfDeath=" + yearOfDeath +
+                ", witchYear=" + getWitchYear() +
                 '}';
     }
 
     public int getWitchYear() {
-        return yearOfDeath - ageOfDeath;
+        if (yearOfDeath < 0 || ageOfDeath < 0) {
+            return -1;
+        }
+
+        int witchYear = yearOfDeath - ageOfDeath;
+
+        if (witchYear < 0) {
+            return -1;
+        }
+
+        return witchYear;
     }
+
 }

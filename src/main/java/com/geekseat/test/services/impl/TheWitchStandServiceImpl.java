@@ -1,7 +1,7 @@
 package com.geekseat.test.services.impl;
 
 import com.geekseat.test.services.TheWitchStandService;
-import com.geekseat.test.ui.model.PersonsDto;
+import com.geekseat.test.ui.model.PersonDto;
 import com.geekseat.test.util.http.exceptions.BadRequestException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,29 +14,30 @@ import java.util.List;
 public class TheWitchStandServiceImpl implements TheWitchStandService {
 
     @Override
-    public double getDeathAverage(PersonsDto persons) {
-        if (persons.getPerson1().getWitchYear() < 0 || persons.getPerson2().getWitchYear() < 0) {
-            return -1.00;
-        }
-
-        double numberOfKills1 = numberOfKills(persons.getPerson1().getWitchYear());
-        double numberOfKills2 = numberOfKills(persons.getPerson2().getWitchYear());
-
-        return (numberOfKills1 + numberOfKills2) / 2;
+    public double getDeathAverage(List<PersonDto> persons) {
+        return persons.stream().mapToInt(person -> numberOfKills(person.getWitchYear())).average().orElse(0.0);
     }
 
-    private static int numberOfKills(int year) {
+    @Override
+    public int numberOfKills(int year) {
         if (year < 0) {
-            throw new BadRequestException("The witch not take control yet");
+            throw new BadRequestException("The witch is not take control yet");
         }
 
-        if (year <= 1) {
-            return year;
+        List<Integer> fibonacciSequence = new ArrayList<>();
+        for (int i = 0; i <= year; i++) {
+            fibonacciSequence.add(fibonacciNumber(i));
         }
-
-        List<Integer> fibonacciSequence = fibonacciSequence(year);
 
         return fibonacciSequence.stream().reduce(0, Integer::sum);
+    }
+
+    @Override
+    public int fibonacciNumber(int n) {
+        if (n <= 1)
+            return n;
+
+        return fibonacciNumber(n - 1) + fibonacciNumber(n - 2);
     }
 
     private static List<Integer> fibonacciSequence(int seq) {

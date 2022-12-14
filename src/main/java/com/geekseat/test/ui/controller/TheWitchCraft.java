@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -20,7 +19,7 @@ public class TheWitchCraft {
     }
 
     @PostMapping("/death-average")
-    public double getAverageDeath(@Valid @RequestBody PersonsDto persons) {
-        return witchStandService.getDeathAverage(persons);
+    public double getAverageDeath(@Valid @RequestBody PersonsDto personsDto) {
+        return witchStandService.getDeathAverage(personsDto.getPersons());
     }
 }
