@@ -35,3 +35,8 @@ program should return -1.
 
 * So I decided to make if AgeOfDeath or YearOfDeath or YearOfDeath - AgeOfDeath is a negative value
 * the PersonDto.getWitchYear will return -1
+
+## Test Consul
+
+* For The Function tests please check the GeekseatTestApplicationTests
+* For the REST Controller Test please Heck the RestApiTest
