@@ -22,26 +22,27 @@ class GeekseatTestApplicationTests {
     void fibonacciNumber() {
         // fibonacci number less than 1 return the number itself
 
-        int testZero = theWitchStandService.fibonacciNumber(0);
-        int testOne = theWitchStandService.fibonacciNumber(1);
+        long testZero = theWitchStandService.fibonacciNumber(0);
+        long testOne = theWitchStandService.fibonacciNumber(1);
 
         assertEquals(0, testZero);
         assertEquals(1, testOne);
 
         // The Third Number of fibonacci is 1 (in loop, third number is considered index 2)
-        int thirdNumber = theWitchStandService.fibonacciNumber(2);
+        long thirdNumber = theWitchStandService.fibonacciNumber(2);
         assertEquals(1, testOne);
 
         // The sixth Number of fibonacci is 5 as in 0 1 1 2 3 5
-        int sixthNumber = theWitchStandService.fibonacciNumber(5);
+        long sixthNumber = theWitchStandService.fibonacciNumber(5);
         assertEquals(5, sixthNumber);
 
         // Collecting fibonacci sequence for 6 times should be [0, 1, 1, 2, 3, 5]
-        int[] sequence = new int[6];
-        for (int i = 0; i <= 5; i++) {
+        long[] sequence = new long[47];
+        for (int i = 0; i <= 46; i++) {
             sequence[i] = theWitchStandService.fibonacciNumber(i);
         }
-        assertArrayEquals(new int[]{0, 1, 1, 2, 3, 5}, sequence);
+        assertArrayEquals(new long[]{0,	1,	1,	2,	3,	5,	8,	13,	21,	34,	55,	89,	144,	233,	377,	610,	987,	1597,	2584,	4181,	6765,	10946,	17711,	28657,	46368,	75025,	121393,	196418,	317811,	514229,	832040,	1346269,	2178309,	3524578,	5702887,	9227465,	14930352,	24157817,	39088169,	63245986,	102334155,	165580141,	267914296,	433494437,	701408733,	1134903170,	1836311903
+        }, sequence);
     }
 
     @Test

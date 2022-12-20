@@ -6,6 +6,7 @@ import com.geekseat.test.util.http.exceptions.BadRequestException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,27 +16,27 @@ public class TheWitchStandServiceImpl implements TheWitchStandService {
 
     @Override
     public double getDeathAverage(List<PersonDto> persons) {
-        return persons.stream().mapToInt(person -> numberOfKills(person.getWitchYear())).average().orElse(0.0);
+        return persons.stream().mapToLong(person -> numberOfKills(person.getWitchYear())).average().orElse(0.0);
     }
 
     @Override
-    public int numberOfKills(int year) {
+    public Long numberOfKills(int year) {
         if (year < 0) {
             throw new BadRequestException("The witch is not take control yet");
         }
 
-        List<Integer> fibonacciSequence = new ArrayList<>();
+        List<Long> fibonacciSequence = new ArrayList<>();
         for (int i = 0; i <= year; i++) {
             fibonacciSequence.add(fibonacciNumber(i));
         }
 
-        return fibonacciSequence.stream().reduce(0, Integer::sum);
+        return fibonacciSequence.stream().reduce((long) 0, Long::sum);
     }
 
     @Override
-    public int fibonacciNumber(int n) {
+    public Long fibonacciNumber(int n) {
         if (n <= 1)
-            return n;
+            return (long) n;
 
         return fibonacciNumber(n - 1) + fibonacciNumber(n - 2);
     }
