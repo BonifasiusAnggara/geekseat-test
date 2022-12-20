@@ -25,7 +25,7 @@ The following guides illustrate how to use some features concretely:
 
 ## Revision 1:
 
-* Changing PersonDto form only person1 and person2 into List<PersonDto>
+* Changing PersonDto form only person1 and person2 into List of PersonDto
 * Make fibonacci function to using recursion
 * This part I don't clearly understand:
 
